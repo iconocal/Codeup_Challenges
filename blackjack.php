@@ -6,7 +6,7 @@
 $suits = ['C', 'H', 'S', 'D'];
 
 // create an array for cards
-$faces = [1 => 'A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
+$cards = [1 => 'A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
 
 
 
@@ -14,26 +14,30 @@ $faces = [1 => 'A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K']
 // build a deck (array) of cards
 // card values should be "VALUE SUIT". ex: "7 H"
 // make sure to shuffle the deck before returning it
-function buildDeck($suits, $faces) {
+function buildDeck($suits, $cards) {
 	$deck = array();
 	foreach ($suits as $suit) {
-		foreach ($faces as $face) {
-			$deck[] = $face . " " . $suit;
+		foreach ($cards as $card) {
+			$deck[] = $card . " " . $suit;
 		}
 	}
+	shuffle($deck);
 	return $deck;
 }
 
 
-$deck = buildDeck($suits, $faces);
 
-print_r($deck);
+//  Defined Function: cardIsAce() //
+//  determine if a card is a ace //
+//  return BOOL true or false   //
 
-// // determine if a card is an ace
-// // return true for ace, false for anything else
-// function cardIsAce($card) {
-//   // todo
-// }
+function cardIsAce($card) {
+	if (strstr($card, "A")) {
+   		return true;
+	} else {
+   		return false;
+	}
+  }
 
 // // determine the value of an individual card (string)
 // // aces are worth 11
@@ -66,8 +70,16 @@ print_r($deck);
 //   // todo
 // }
 
-// // build the deck of cards
-// $deck = buildDeck($suits, $cards);
+// build the deck of cards
+$deck = buildDeck($suits, $cards);
+
+$testcard = array_shift($deck);
+
+echo $testcard . PHP_EOL;
+
+echo var_dump(cardIsAce($testcard)) . PHP_EOL;
+
+
 
 // // initialize a dealer and player hand
 // $dealer = [];
