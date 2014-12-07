@@ -10,7 +10,7 @@ $cards = [1 => 'A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K']
 
 
 
-
+// Defined Function: buildDeck()
 // build a deck (array) of cards
 // card values should be "VALUE SUIT". ex: "7 H"
 // make sure to shuffle the deck before returning it
@@ -27,25 +27,61 @@ function buildDeck($suits, $cards) {
 
 
 
-//  Defined Function: cardIsAce() //
-//  determine if a card is a ace //
-//  return BOOL true or false   //
-
+// //  Defined Function: cardIsAce() //
+// //  determine if a card is a ace //
+// //  return BOOL true or false   //
 function cardIsAce($card) {
 	if (strstr($card, "A")) {
    		return true;
 	} else {
    		return false;
 	}
-  }
+}
 
-// // determine the value of an individual card (string)
-// // aces are worth 11
-// // face cards are worth 10
-// // numeric cards are worth their value
-// function getCardValue($card) {
-//   // todo
-// }
+// Defined Function: getCardValue()
+// determine the value of an individual card (string)
+function getCardValue($card) {
+  $value = 0;
+  $valueArray = explode(" ", $card);
+  $face = array_shift($valueArray);
+  switch ($face) {
+  	case 'A':
+  		$value = 11;
+  		break;
+	case '2':
+		$value = 2;
+		break;
+  	case '3':
+		$value = 3;
+		break;
+	case '4':
+		$value = 4;
+		break;
+	case '5':
+		$value = 5;
+		break;
+	case '6':
+		$value = 6;
+		break;
+	case '7':
+		$value = 7;
+		break;
+	case '8':
+		$value = 8;
+		break;
+	case '9':
+		$value = 9;
+		break;
+	case '10':
+		$value = 10;
+		break;
+  	default:
+  		$value = 10;
+  		break;
+  }
+ 
+  return $value;
+}
 
 // // get total value for a hand of cards
 // // don't forget to factor in aces
@@ -73,11 +109,16 @@ function cardIsAce($card) {
 // build the deck of cards
 $deck = buildDeck($suits, $cards);
 
+// print_r($deck);
+
+
 $testcard = array_shift($deck);
 
 echo $testcard . PHP_EOL;
 
-echo var_dump(cardIsAce($testcard)) . PHP_EOL;
+echo (getCardValue($testcard)) . PHP_EOL;
+
+// echo var_dump(cardIsAce($testcard)) . PHP_EOL;
 
 
 
